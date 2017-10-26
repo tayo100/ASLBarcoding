@@ -1,0 +1,36 @@
+﻿@model ASLBarcoding.Models.SampleType
+
+@{
+    ViewBag.Title = "Sample Type Details";
+}
+
+<h2>Sample Type Details</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Sample Name
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Test Type
+            @*@Html.DisplayNameFor(model => model.TestType.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

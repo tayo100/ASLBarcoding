@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ASLBarcoding.Models.TestInRequest>
+
+@{
+    ViewBag.Title = "TestInRequest List";
+}
+
+<h2>Test - Request List</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.SelectedTest)
+        </th>*@
+        <th>
+            Request No
+            @*@Html.DisplayNameFor(model => model.Request.ID)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Test)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            Assigned To
+        </th>
+
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.WorkorderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Test.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Test.AspNetUser.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new {id = item.Id})  |      
+            @Html.ActionLink("Analyse", "Index", "Scanner", new { id = item.Id } , new {@class = "btn btn-action" })        
+        </td>
+     </tr>
+}
+
+</table>

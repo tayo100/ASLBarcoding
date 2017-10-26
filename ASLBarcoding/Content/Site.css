@@ -1,0 +1,153 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*.navbar-header{
+    color:white;
+}*/
+
+.navbar-inverse {
+    background-color: #af1b1b;
+    border-color: #a91515;
+    color:white;
+}
+.navbar-inverse .navbar-nav > li > a{
+    color:white
+}
+
+.navbar-inverse .navbar-brand{
+    color:white;
+}
+
+.nav .navbar-nav{
+    color:white;
+}
+
+/*.navbar {
+    color:white;
+}*/
+
+
+a {
+  color: #b91e2b;
+  text-decoration: none;
+}
+
+td{
+    text-align: left;
+}
+
+th{
+    text-align: left;
+}
+
+
+
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+.btn-default {
+    color: #ddd5d5;
+    background-color: #af1b1b;
+    border-color: #adadad;
+}
+
+.btn-primary{
+    color: #ddd5d5;
+    background-color: #af1b1b;
+    border-color: #adadad;
+}
+
+.btn-success {
+    color: #ddd5d5;
+    background-color: #af1b1b;
+    border-color: #adadad;
+}
+
+.btn-action {
+    color: #b91e2b !important ;
+    background-color: #fbe2e2 !important;
+    border-color: #adadad;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-action, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    color: #333333;
+    background-color: #e24545;
+    border-color: #adadad;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+/*
+.navbar navbar-inverse navbar-fixed-top {
+    background-color: #e0522a !important ;
+    border-color: #e0522a;
+}*/
+
+
+
+/*
+.navbar-inverse .navbar-brand{
+    color:yellow;
+}
+*/

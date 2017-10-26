@@ -1,0 +1,147 @@
+﻿@model ASLBarcoding.Models.Request
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
+@{
+    ViewBag.Title = "Create Request";
+}
+
+<h2>Create Request</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmitDate, "Date Submitted", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SubmitDate, new { @class = "form-control datecontrol" })
+                @Html.ValidationMessageFor(model => model.SubmitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequiredDate, "Date Required", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol" })
+                @Html.ValidationMessageFor(model => model.RequiredDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientId, "Client", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ClientId", null, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NoofSamples, "Total no. of Samples", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NoofSamples, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NoofSamples, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SampleTypeId, "Sample Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SampleTypeId", null, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SampleTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.Label("Sample Type", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Reason?", new SelectListItem[]{
+                        new SelectListItem()  Ajax.ActionLink() }
+                        new SelectListItem() {Text = "-- Select --", Value=""},
+                        new SelectListItem() {Text = "Subculture", Value="Subculture"},
+                        new SelectListItem() {Text = "Contamination", Value="Contamination"},
+                        new SelectListItem() {Text = "Hardening", Value="Hardening"},
+                        new SelectListItem() {Text = "Partners", Value="Partners"}},
+                         new { @class = "form-control" })
+
+                </div>
+            </div>*@
+
+
+        @*@Ajax.ActionLink("Show", "Show", null, new AjaxOptions()
+                 {
+                     HttpMethod = "GET",
+                     InsertionMode = InsertionMode.Replace,
+                     UpdateTargetId = "dialog_window_id",
+                     OnComplete = "your_js_function();"
+                 })*@
+
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Cost, "Charge", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Cost, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompletionDate, "Proposed Completion date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol" })
+                @Html.ValidationMessageFor(model => model.RequiredDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+        @*<table class="input_fields_wrap table table-bordered">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Invoice No</td>
+                </tr>
+            </thead>
+            <tbody id="tbInvoices">
+                <tr>*@
+                    @*<td><button class="add_field_button">+More</button></td>*@
+                    @*<td></td>
+                    <td>*@
+                        @*<div class="">
+                            @Html.TextBoxFor(model => model.TestCheckList.Add())
+                            @Html.ValidationMessageFor(model => model.Invoices[0].InvoiceNo)
+                        </div>*@
+                    @*</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+
+
+
+
+
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@

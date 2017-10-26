@@ -1,0 +1,35 @@
+﻿@model List<ASLBarcoding.Models.TestCheck>
+
+@{
+    ViewBag.Title = "Pick Test";
+}
+
+<h2>Pick Test</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+@using (Html.BeginForm())
+{
+    for (var i = 0; i < Model.Count(); i++)
+    {
+        <table>
+            <tr>
+                <td>
+                    @*@Html.HiddenFor(it => it[i].Id)*@
+                    @*@Html.HiddenFor(it => it[i].Test.Name)*@             
+                    @Html.HiddenFor(it => it[i].TestId)        
+                    @Html.DisplayFor(it => it[i].Test.Name)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(it => it[i].Checked, new { Style = "vertical-align:3px}" })
+                </td>
+            </tr>
+        </table>
+
+    }
+
+   <input type="submit" value="Create" class="btn btn-default" />
+}
+
+@* formaction="Index" *@

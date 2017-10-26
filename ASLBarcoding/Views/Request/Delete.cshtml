@@ -1,0 +1,88 @@
+﻿@model ASLBarcoding.Models.Request
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Request</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkorderNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkorderNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoofSamples)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoofSamples)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SampleFirstNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SampleFirstNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SampleLastNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SampleLastNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SampleType.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SampleType.Id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

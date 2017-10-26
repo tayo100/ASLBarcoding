@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f9a4e312a56049e48c1b447a4efb538a" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Analysis" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.AspNetRole" Width="1.5" PointX="3.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.AspNetUser" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.AspNetUserRole" Width="1.5" PointX="6" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Client" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Request" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Result" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Sample" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.SampleType" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.Test" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestCheckList" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestInRequest" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestType" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Analysis_Sample" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Analysis_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Result_Analysis" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_AspNetUserRole_AspNetRole" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_AspNetUserRole_AspNetUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Test_AspNetUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Request_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Request_SampleType" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Sample_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_TestCheckList_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_Test_TestType" ManuallyRouted="false" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_Test" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestCheck" Width="1.5" PointX="5.25" PointY="19.25" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_TestCheck_Test" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.UserLogin" Width="1.5" PointX="3" PointY="18.75" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_UserLogin_AspNetUser" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_SampleType_TestType" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

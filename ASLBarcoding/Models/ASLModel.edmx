@@ -1,0 +1,1116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ASLBarcodingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Analysis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item" Type="nvarchar(max)" />
+          <Property Name="SampleId" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateDone" Type="date" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="1128" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Token" Type="nvarchar(max)" />
+          <Property Name="TokenExpired" Type="bit" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="BudgetNo" Type="int" Nullable="false" />
+          <Property Name="TelephoneNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubmitDate" Type="date" />
+          <Property Name="RequiredDate" Type="date" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="NoofSamples" Type="int" Nullable="false" />
+          <Property Name="SampleTypeId" Type="int" />
+          <Property Name="WorkorderNo" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompletionDate" Type="date" />
+          <Property Name="SampleFirstNo" Type="int" Nullable="false" />
+          <Property Name="SampleLastNo" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AnalysisId" Type="int" />
+          <Property Name="Result" Type="int" />
+        </EntityType>
+        <EntityType Name="Sample">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SampleNo" Type="int" />
+          <Property Name="Barcode" Type="nvarchar(max)" />
+          <Property Name="BarcodeImageUrl" Type="varbinary(max)" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SampleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TestType_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="TestTypeId" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TestCheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="Checked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestCheckList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestInRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Analysis_Sample">
+          <End Role="Sample" Type="Self.Sample" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sample">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="SampleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_User">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRole_AspNetRole">
+          <End Role="AspNetRole" Type="Self.AspNetRole" Multiplicity="1" />
+          <End Role="AspNetUserRole" Type="Self.AspNetUserRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRole_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="AspNetUserRole" Type="Self.AspNetUserRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_SampleType">
+          <End Role="SampleType" Type="Self.SampleType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="SampleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SampleType_TestType">
+          <End Role="TestType" Type="Self.TestType" Multiplicity="0..1" />
+          <End Role="SampleType" Type="Self.SampleType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SampleType">
+              <PropertyRef Name="TestType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_TestType">
+          <End Role="TestType" Type="Self.TestType" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="TestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestCheck_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestCheck" Type="Self.TestCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestCheck">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="TestInRequest" Type="Self.TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="TestInRequest" Type="Self.TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestInRequest" Type="Self.TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ASLBarcodingDBModelStoreContainer">
+          <EntitySet Name="Analysis" EntityType="Self.Analysis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRole" EntityType="Self.AspNetRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUser" EntityType="Self.AspNetUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRole" EntityType="Self.AspNetUserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sample" EntityType="Self.Sample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SampleType" EntityType="Self.SampleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestCheck" EntityType="Self.TestCheck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestCheckList" EntityType="Self.TestCheckList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestInRequest" EntityType="Self.TestInRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestType" EntityType="Self.TestType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Analysis_Sample" Association="Self.FK_Analysis_Sample">
+            <End Role="Sample" EntitySet="Sample" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_User" Association="Self.FK_Analysis_User">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRole_AspNetRole" Association="Self.FK_AspNetUserRole_AspNetRole">
+            <End Role="AspNetRole" EntitySet="AspNetRole" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRole_AspNetUser" Association="Self.FK_AspNetUserRole_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Client" Association="Self.FK_Request_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_SampleType" Association="Self.FK_Request_SampleType">
+            <End Role="SampleType" EntitySet="SampleType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Analysis" Association="Self.FK_Result_Analysis">
+            <End Role="Analysis" EntitySet="Analysis" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SampleType_TestType" Association="Self.FK_SampleType_TestType">
+            <End Role="TestType" EntitySet="TestType" />
+            <End Role="SampleType" EntitySet="SampleType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_AspNetUser" Association="Self.FK_Test_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_TestType" Association="Self.FK_Test_TestType">
+            <End Role="TestType" EntitySet="TestType" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestCheck_Test" Association="Self.FK_TestCheck_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestCheck" EntitySet="TestCheck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_AspNetUser" Association="Self.FK_TestInRequest_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_Request" Association="Self.FK_TestInRequest_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_Test" Association="Self.FK_TestInRequest_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_AspNetUser" Association="Self.FK_UserLogin_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ASLBarcodingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Analysis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SampleId" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateDone" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Sample" Relationship="Self.FK_Analysis_Sample" FromRole="Analysis" ToRole="Sample" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Analysis_User" FromRole="Analysis" ToRole="AspNetUser" />
+          <NavigationProperty Name="Result" Relationship="Self.FK_Result_Analysis" FromRole="Analysis" ToRole="Result" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="1128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserRole" Relationship="Self.FK_AspNetUserRole_AspNetRole" FromRole="AspNetRole" ToRole="AspNetUserRole" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TokenExpired" Type="Boolean" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_Analysis_User" FromRole="AspNetUser" ToRole="Analysis" />
+          <NavigationProperty Name="AspNetUserRole" Relationship="Self.FK_AspNetUserRole_AspNetUser" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_AspNetUser" FromRole="AspNetUser" ToRole="Test" />
+          <NavigationProperty Name="UserLogin" Relationship="ASLBarcodingDBModel.FK_UserLogin_AspNetUser" FromRole="AspNetUser" ToRole="UserLogin" />
+          <NavigationProperty Name="TestInRequest" Relationship="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser" FromRole="AspNetUser" ToRole="TestInRequest" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetUserRole_AspNetRole" FromRole="AspNetUserRole" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserRole_AspNetUser" FromRole="AspNetUserRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BudgetNo" Type="Int32" Nullable="false" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Client" FromRole="Client" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubmitDate" Type="DateTime" Precision="0" />
+          <Property Name="RequiredDate" Type="DateTime" Precision="0" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="NoofSamples" Type="Int32" Nullable="false" />
+          <Property Name="SampleTypeId" Type="Int32" />
+          <Property Name="WorkorderNo" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="0" />
+          <Property Name="SampleFirstNo" Type="Int32" Nullable="false" />
+          <Property Name="SampleLastNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Request_Client" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="SampleType" Relationship="Self.FK_Request_SampleType" FromRole="Request" ToRole="SampleType" />
+          <NavigationProperty Name="Sample" Relationship="Self.FK_Sample_Request" FromRole="Request" ToRole="Sample" />
+          <NavigationProperty Name="TestCheckList" Relationship="Self.FK_TestCheckList_Request" FromRole="Request" ToRole="TestCheckList" />
+          <NavigationProperty Name="TestInRequest" Relationship="Self.FK_TestInRequest_Request" FromRole="Request" ToRole="TestInRequest" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AnalysisId" Type="Int32" />
+          <Property Name="Result1" Type="Int32" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_Result_Analysis" FromRole="Result" ToRole="Analysis" />
+        </EntityType>
+        <EntityType Name="Sample">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleNo" Type="Int32" />
+          <Property Name="Barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BarcodeImageUrl" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Analysis" Relationship="Self.FK_Analysis_Sample" FromRole="Sample" ToRole="Analysis" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Sample_Request" FromRole="Sample" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="SampleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_SampleType" FromRole="SampleType" ToRole="Request" />
+          <Property Name="TestType_Id" Type="Int32" />
+          <NavigationProperty Name="TestType" Relationship="ASLBarcodingDBModel.FK_SampleType_TestType" FromRole="SampleType" ToRole="TestType" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TestTypeId" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Test_AspNetUser" FromRole="Test" ToRole="AspNetUser" />
+          <NavigationProperty Name="TestType" Relationship="Self.FK_Test_TestType" FromRole="Test" ToRole="TestType" />
+          <NavigationProperty Name="TestInRequest" Relationship="Self.FK_TestInRequest_Test" FromRole="Test" ToRole="TestInRequest" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TestCheck" Relationship="ASLBarcodingDBModel.FK_TestCheck_Test" FromRole="Test" ToRole="TestCheck" />
+        </EntityType>
+        <EntityType Name="TestCheckList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_TestCheckList_Request" FromRole="TestCheckList" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="TestInRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_TestInRequest_Request" FromRole="TestInRequest" ToRole="Request" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_TestInRequest_Test" FromRole="TestInRequest" ToRole="Test" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser" FromRole="TestInRequest" ToRole="AspNetUser" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_TestType" FromRole="TestType" ToRole="Test" />
+          <NavigationProperty Name="SampleType" Relationship="ASLBarcodingDBModel.FK_SampleType_TestType" FromRole="TestType" ToRole="SampleType" />
+        </EntityType>
+        <Association Name="FK_Analysis_Sample">
+          <End Role="Sample" Type="Self.Sample" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sample">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="SampleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Analysis_User">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Analysis">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Analysis">
+          <End Role="Analysis" Type="Self.Analysis" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analysis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="AnalysisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRole_AspNetRole">
+          <End Role="AspNetRole" Type="Self.AspNetRole" Multiplicity="1" />
+          <End Role="AspNetUserRole" Type="Self.AspNetUserRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRole_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="AspNetUserRole" Type="Self.AspNetUserRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_AspNetUser">
+          <End Role="AspNetUser" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_SampleType">
+          <End Role="SampleType" Type="Self.SampleType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="SampleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sample_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="Sample" Type="Self.Sample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sample">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestCheckList_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="TestCheckList" Type="Self.TestCheckList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestCheckList">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="TestInRequest" Type="Self.TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_TestType">
+          <End Role="TestType" Type="Self.TestType" Multiplicity="0..1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="TestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestInRequest" Type="Self.TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ASLBarcodingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Analysis" EntityType="Self.Analysis" />
+          <EntitySet Name="AspNetRole" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUser" EntityType="Self.AspNetUser" />
+          <EntitySet Name="AspNetUserRole" EntityType="Self.AspNetUserRole" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="Result" EntityType="Self.Result" />
+          <EntitySet Name="Sample" EntityType="Self.Sample" />
+          <EntitySet Name="SampleType" EntityType="Self.SampleType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="TestCheckList" EntityType="Self.TestCheckList" />
+          <EntitySet Name="TestInRequest" EntityType="Self.TestInRequest" />
+          <EntitySet Name="TestType" EntityType="Self.TestType" />
+          <AssociationSet Name="FK_Analysis_Sample" Association="Self.FK_Analysis_Sample">
+            <End Role="Sample" EntitySet="Sample" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Analysis_User" Association="Self.FK_Analysis_User">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="Analysis" EntitySet="Analysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Analysis" Association="Self.FK_Result_Analysis">
+            <End Role="Analysis" EntitySet="Analysis" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRole_AspNetRole" Association="Self.FK_AspNetUserRole_AspNetRole">
+            <End Role="AspNetRole" EntitySet="AspNetRole" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRole_AspNetUser" Association="Self.FK_AspNetUserRole_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_AspNetUser" Association="Self.FK_Test_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Client" Association="Self.FK_Request_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_SampleType" Association="Self.FK_Request_SampleType">
+            <End Role="SampleType" EntitySet="SampleType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sample_Request" Association="Self.FK_Sample_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Sample" EntitySet="Sample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestCheckList_Request" Association="Self.FK_TestCheckList_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="TestCheckList" EntitySet="TestCheckList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_Request" Association="Self.FK_TestInRequest_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_TestType" Association="Self.FK_Test_TestType">
+            <End Role="TestType" EntitySet="TestType" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_Test" Association="Self.FK_TestInRequest_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <EntitySet Name="TestCheck" EntityType="ASLBarcodingDBModel.TestCheck" />
+          <AssociationSet Name="FK_TestCheck_Test" Association="ASLBarcodingDBModel.FK_TestCheck_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestCheck" EntitySet="TestCheck" />
+          </AssociationSet>
+          <EntitySet Name="UserLogin" EntityType="ASLBarcodingDBModel.UserLogin" />
+          <AssociationSet Name="FK_UserLogin_AspNetUser" Association="ASLBarcodingDBModel.FK_UserLogin_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestInRequest_AspNetUser" Association="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUser" />
+            <End Role="TestInRequest" EntitySet="TestInRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SampleType_TestType" Association="ASLBarcodingDBModel.FK_SampleType_TestType">
+            <End Role="TestType" EntitySet="TestType" />
+            <End Role="SampleType" EntitySet="SampleType" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="TestCheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="Checked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="ASLBarcodingDBModel.FK_TestCheck_Test" FromRole="TestCheck" ToRole="Test" />
+        </EntityType>
+        <Association Name="FK_TestCheck_Test">
+          <End Type="ASLBarcodingDBModel.Test" Role="Test" Multiplicity="1" />
+          <End Type="ASLBarcodingDBModel.TestCheck" Role="TestCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestCheck">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="ASLBarcodingDBModel.FK_UserLogin_AspNetUser" FromRole="UserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_UserLogin_AspNetUser">
+          <End Type="ASLBarcodingDBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ASLBarcodingDBModel.UserLogin" Role="UserLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestInRequest_AspNetUser">
+          <End Type="ASLBarcodingDBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="ASLBarcodingDBModel.TestInRequest" Role="TestInRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestInRequest">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SampleType_TestType">
+          <End Type="ASLBarcodingDBModel.TestType" Role="TestType" Multiplicity="0..1" />
+          <End Type="ASLBarcodingDBModel.SampleType" Role="SampleType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SampleType">
+              <PropertyRef Name="TestType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ASLBarcodingDBModelStoreContainer" CdmEntityContainer="ASLBarcodingDBEntities">
+          <EntitySetMapping Name="Analysis">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Analysis">
+              <MappingFragment StoreEntitySet="Analysis">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateDone" ColumnName="DateDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRole">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUser">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUser">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="TokenExpired" ColumnName="TokenExpired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRole">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRole">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BudgetNo" ColumnName="BudgetNo" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubmitDate" ColumnName="SubmitDate" />
+                <ScalarProperty Name="RequiredDate" ColumnName="RequiredDate" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="NoofSamples" ColumnName="NoofSamples" />
+                <ScalarProperty Name="SampleTypeId" ColumnName="SampleTypeId" />
+                <ScalarProperty Name="WorkorderNo" ColumnName="WorkorderNo" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="SampleFirstNo" ColumnName="SampleFirstNo" />
+                <ScalarProperty Name="SampleLastNo" ColumnName="SampleLastNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Result">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
+                <ScalarProperty Name="Result1" ColumnName="Result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sample">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Sample">
+              <MappingFragment StoreEntitySet="Sample">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SampleNo" ColumnName="SampleNo" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="BarcodeImageUrl" ColumnName="BarcodeImageUrl" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SampleType">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.SampleType">
+              <MappingFragment StoreEntitySet="SampleType">
+                <ScalarProperty Name="TestType_Id" ColumnName="TestType_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TestTypeId" ColumnName="TestTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestCheckList">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestCheckList">
+              <MappingFragment StoreEntitySet="TestCheckList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestInRequest">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestInRequest">
+              <MappingFragment StoreEntitySet="TestInRequest">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestType">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestType">
+              <MappingFragment StoreEntitySet="TestType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestCheck">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestCheck">
+              <MappingFragment StoreEntitySet="TestCheck">
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogin">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

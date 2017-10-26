@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ASL Barcoding App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ASLBarcoding System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Analysis", "Index", "Analyses")</li>
+                    <li>@Html.ActionLink("Samples", "Index", "Samples")</li>
+                    <li>@Html.ActionLink("SampleType", "Index", "SampleType")</li>*@
+                    @*<li>@Html.ActionLink("Analysis Test", "Index", "TestInRequest")</li>*@
+                    <li class="dropdown">
+                        <a href="#" id="manage" class="dropdown-toggle" data-toggle="dropdown">Registration<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li>@Html.ActionLink("Test Types", "Index", "TestType")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Test", "Index", "Tests")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Client", "Index", "Client")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Sample Type", "Index", "SampleType")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Analysis Type", "Index", "TestCheck")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" id="manage" class="dropdown-toggle" data-toggle="dropdown">Actions<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="download">
+                            <li>@Html.ActionLink("Request", "Index", "Request")</li>
+                            <li class="divider"></li>                            
+                            <li>@Html.ActionLink("Samples", "Index", "Samples")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Barcode Scan", "Index", "Scanner")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Test Check", "Index", "TestCheck")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Test in Request", "Index", "TestInRequest")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Results", "Index", "Results")</li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - ASL Barcoding System</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

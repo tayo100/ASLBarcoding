@@ -1,0 +1,50 @@
+﻿@model ASLBarcoding.Models.TestInRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TestInRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedTest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedTest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Request.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Request.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Test.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Test.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

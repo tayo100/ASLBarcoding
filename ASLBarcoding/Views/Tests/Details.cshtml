@@ -1,0 +1,52 @@
+﻿@model ASLBarcoding.Models.Test
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Test Details</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Test
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Test Type
+            @*@Html.DisplayNameFor(model => model.TestType.Name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            OIC
+            @*@Html.DisplayNameFor(model => model.AspNetUser.UserName)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.FullName)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
