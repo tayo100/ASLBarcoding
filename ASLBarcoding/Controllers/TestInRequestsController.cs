@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASLBarcoding.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ASLBarcoding.Controllers
 {
@@ -50,10 +51,23 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,RequestId,TestId,TestTypeId,SelectedTest")] TestInRequest testInRequest)
         {
             if (ModelState.IsValid)
             {
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                //barcodecs objbar = new barcodecs();
+
+                if (currentUser != null)
+                    testInRequest.createdBy = currentUser.UserName;
+                else
+                    testInRequest.createdBy = User.Identity.Name;
+
+                testInRequest.createdDate = DateTime.Now;
+
+
                 db.TestInRequest.Add(testInRequest);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,10 +102,22 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,RequestId,TestId,TestTypeId,SelectedTest")] TestInRequest testInRequest)
         {
             if (ModelState.IsValid)
             {
+                
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    testInRequest.updatedBy = currentUser.UserName;
+                else
+                    testInRequest.updatedBy = User.Identity.Name;
+
+                testInRequest.updatedDate = DateTime.Now;
+
                 db.Entry(testInRequest).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

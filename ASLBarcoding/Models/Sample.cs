@@ -25,6 +25,11 @@ namespace ASLBarcoding.Models
         public string Barcode { get; set; }
         public byte[] BarcodeImageUrl { get; set; }
         public int RequestID { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Analysis> Analysis { get; set; }

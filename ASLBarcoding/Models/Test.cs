@@ -26,6 +26,11 @@ namespace ASLBarcoding.Models
         public Nullable<int> TestTypeId { get; set; }
         public string UserId { get; set; }
         public Nullable<decimal> Cost { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual TestType TestType { get; set; }

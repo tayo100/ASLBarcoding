@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ASLBarcoding.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
 
 namespace ASLBarcoding.Controllers
 {
@@ -98,6 +99,19 @@ namespace ASLBarcoding.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                //barcodecs objbar = new barcodecs();
+
+                if (currentUser != null)
+                    test.createdBy = currentUser.UserName;
+                else
+                    test.createdBy = User.Identity.Name;
+
+                test.createdDate = DateTime.Now;
+
+
                 db.Test.Add(test);
                 db.SaveChanges();
 
@@ -141,6 +155,17 @@ namespace ASLBarcoding.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    test.updatedBy = currentUser.UserName;
+                else
+                    test.updatedBy = User.Identity.Name;
+
+                test.updatedDate = DateTime.Now;
+
                 db.Entry(test).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

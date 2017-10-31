@@ -41,5 +41,6 @@ namespace ASLBarcoding.Models
         public virtual DbSet<TestType> TestType { get; set; }
         public virtual DbSet<TestCheck> TestCheck { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
+        public virtual DbSet<RequestStage> RequestStage { get; set; }
     }
 }

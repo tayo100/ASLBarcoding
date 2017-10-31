@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASLBarcoding.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASLBarcoding.Controllers
 {
@@ -46,10 +48,22 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,Name")] TestType testType)
         {
             if (ModelState.IsValid)
             {
+
+                //var manager = new UserManager<AspNetUser>(new UserStore<AspNetUser>(new ApplicationDbContext()));
+
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    testType.createdBy = currentUser.UserName;
+                else
+                    testType.createdBy = User.Identity.Name;
+
                 db.TestType.Add(testType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +92,23 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Name")] TestType testType)
         {
             if (ModelState.IsValid)
             {
+
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    testType.updatedBy = currentUser.UserName;
+                else
+                    testType.updatedBy = User.Identity.Name;
+
+                testType.updatedDate = DateTime.Now;
+
+
                 db.Entry(testType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

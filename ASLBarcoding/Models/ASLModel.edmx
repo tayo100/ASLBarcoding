@@ -58,6 +58,11 @@
           <Property Name="TelephoneNo" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="UserId" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -75,6 +80,33 @@
           <Property Name="SampleFirstNo" Type="int" Nullable="false" />
           <Property Name="SampleLastNo" Type="int" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RequestStage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubmitDate" Type="date" />
+          <Property Name="RequiredDate" Type="date" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="NoofSamples" Type="int" Nullable="false" />
+          <Property Name="SampleTypeId" Type="int" />
+          <Property Name="WorkorderNo" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompletionDate" Type="date" />
+          <Property Name="SampleFirstNo" Type="int" Nullable="false" />
+          <Property Name="SampleLastNo" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -83,6 +115,11 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="AnalysisId" Type="int" />
           <Property Name="Result" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Sample">
           <Key>
@@ -93,6 +130,11 @@
           <Property Name="Barcode" Type="nvarchar(max)" />
           <Property Name="BarcodeImageUrl" Type="varbinary(max)" />
           <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SampleType">
           <Key>
@@ -101,6 +143,11 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TestType_Id" Type="int" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -121,6 +168,11 @@
           <Property Name="TestTypeId" Type="int" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TestCheck">
           <Key>
@@ -129,6 +181,11 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="TestId" Type="int" Nullable="false" />
           <Property Name="Checked" Type="bit" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TestCheckList">
           <Key>
@@ -146,6 +203,11 @@
           <Property Name="TestId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TestType">
           <Key>
@@ -153,6 +215,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar(max)" />
+          <Property Name="updatedBy" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UserLogin">
           <Key>
@@ -232,6 +299,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Request">
+              <PropertyRef Name="SampleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestStage_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="RequestStage" Type="Self.RequestStage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestStage">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestStage_SampleType">
+          <End Role="SampleType" Type="Self.SampleType" Multiplicity="0..1" />
+          <End Role="RequestStage" Type="Self.RequestStage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestStage">
               <PropertyRef Name="SampleTypeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -351,6 +442,7 @@
           <EntitySet Name="AspNetUserRole" EntityType="Self.AspNetUserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestStage" EntityType="Self.RequestStage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sample" EntityType="Self.Sample" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SampleType" EntityType="Self.SampleType" Schema="dbo" store:Type="Tables" />
@@ -384,6 +476,14 @@
           <AssociationSet Name="FK_Request_SampleType" Association="Self.FK_Request_SampleType">
             <End Role="SampleType" EntitySet="SampleType" />
             <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestStage_Client" Association="Self.FK_RequestStage_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="RequestStage" EntitySet="RequestStage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestStage_SampleType" Association="Self.FK_RequestStage_SampleType">
+            <End Role="SampleType" EntitySet="SampleType" />
+            <End Role="RequestStage" EntitySet="RequestStage" />
           </AssociationSet>
           <AssociationSet Name="FK_Result_Analysis" Association="Self.FK_Result_Analysis">
             <End Role="Analysis" EntitySet="Analysis" />
@@ -491,6 +591,12 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Client" FromRole="Client" ToRole="Request" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestStage" Relationship="ASLBarcodingDBModel.FK_RequestStage_Client" FromRole="Client" ToRole="RequestStage" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -513,6 +619,11 @@
           <NavigationProperty Name="TestCheckList" Relationship="Self.FK_TestCheckList_Request" FromRole="Request" ToRole="TestCheckList" />
           <NavigationProperty Name="TestInRequest" Relationship="Self.FK_TestInRequest_Request" FromRole="Request" ToRole="TestInRequest" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -522,6 +633,11 @@
           <Property Name="AnalysisId" Type="Int32" />
           <Property Name="Result1" Type="Int32" />
           <NavigationProperty Name="Analysis" Relationship="Self.FK_Result_Analysis" FromRole="Result" ToRole="Analysis" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Sample">
           <Key>
@@ -534,6 +650,11 @@
           <Property Name="RequestID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Analysis" Relationship="Self.FK_Analysis_Sample" FromRole="Sample" ToRole="Analysis" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Sample_Request" FromRole="Sample" ToRole="Request" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SampleType">
           <Key>
@@ -544,6 +665,12 @@
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_SampleType" FromRole="SampleType" ToRole="Request" />
           <Property Name="TestType_Id" Type="Int32" />
           <NavigationProperty Name="TestType" Relationship="ASLBarcodingDBModel.FK_SampleType_TestType" FromRole="SampleType" ToRole="TestType" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestStage" Relationship="ASLBarcodingDBModel.FK_RequestStage_SampleType" FromRole="SampleType" ToRole="RequestStage" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -568,6 +695,11 @@
           <NavigationProperty Name="TestInRequest" Relationship="Self.FK_TestInRequest_Test" FromRole="Test" ToRole="TestInRequest" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="TestCheck" Relationship="ASLBarcodingDBModel.FK_TestCheck_Test" FromRole="Test" ToRole="TestCheck" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TestCheckList">
           <Key>
@@ -589,6 +721,11 @@
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser" FromRole="TestInRequest" ToRole="AspNetUser" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TestType">
           <Key>
@@ -598,6 +735,11 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Test" Relationship="Self.FK_Test_TestType" FromRole="TestType" ToRole="Test" />
           <NavigationProperty Name="SampleType" Relationship="ASLBarcodingDBModel.FK_SampleType_TestType" FromRole="TestType" ToRole="SampleType" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Analysis_Sample">
           <End Role="Sample" Type="Self.Sample" Multiplicity="0..1" />
@@ -840,6 +982,15 @@
             <End Role="TestType" EntitySet="TestType" />
             <End Role="SampleType" EntitySet="SampleType" />
           </AssociationSet>
+          <EntitySet Name="RequestStage" EntityType="ASLBarcodingDBModel.RequestStage" />
+          <AssociationSet Name="FK_RequestStage_Client" Association="ASLBarcodingDBModel.FK_RequestStage_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="RequestStage" EntitySet="RequestStage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestStage_SampleType" Association="ASLBarcodingDBModel.FK_RequestStage_SampleType">
+            <End Role="SampleType" EntitySet="SampleType" />
+            <End Role="RequestStage" EntitySet="RequestStage" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="TestCheck">
           <Key>
@@ -849,6 +1000,11 @@
           <Property Name="TestId" Type="Int32" Nullable="false" />
           <Property Name="Checked" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Test" Relationship="ASLBarcodingDBModel.FK_TestCheck_Test" FromRole="TestCheck" ToRole="Test" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_TestCheck_Test">
           <End Type="ASLBarcodingDBModel.Test" Role="Test" Multiplicity="1" />
@@ -909,6 +1065,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RequestStage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubmitDate" Type="DateTime" Precision="0" />
+          <Property Name="RequiredDate" Type="DateTime" Precision="0" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="NoofSamples" Type="Int32" Nullable="false" />
+          <Property Name="SampleTypeId" Type="Int32" />
+          <Property Name="WorkorderNo" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="0" />
+          <Property Name="SampleFirstNo" Type="Int32" Nullable="false" />
+          <Property Name="SampleLastNo" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="createdBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="ASLBarcodingDBModel.FK_RequestStage_Client" FromRole="RequestStage" ToRole="Client" />
+          <NavigationProperty Name="SampleType" Relationship="ASLBarcodingDBModel.FK_RequestStage_SampleType" FromRole="RequestStage" ToRole="SampleType" />
+        </EntityType>
+        <Association Name="FK_RequestStage_Client">
+          <End Type="ASLBarcodingDBModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ASLBarcodingDBModel.RequestStage" Role="RequestStage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestStage">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestStage_SampleType">
+          <End Type="ASLBarcodingDBModel.SampleType" Role="SampleType" Multiplicity="0..1" />
+          <End Type="ASLBarcodingDBModel.RequestStage" Role="RequestStage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestStage">
+              <PropertyRef Name="SampleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -964,6 +1168,11 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -977,6 +1186,11 @@
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.Request">
               <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SubmitDate" ColumnName="SubmitDate" />
@@ -995,6 +1209,11 @@
           <EntitySetMapping Name="Result">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.Result">
               <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AnalysisId" ColumnName="AnalysisId" />
                 <ScalarProperty Name="Result1" ColumnName="Result" />
@@ -1004,6 +1223,11 @@
           <EntitySetMapping Name="Sample">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.Sample">
               <MappingFragment StoreEntitySet="Sample">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SampleNo" ColumnName="SampleNo" />
                 <ScalarProperty Name="Barcode" ColumnName="Barcode" />
@@ -1015,6 +1239,11 @@
           <EntitySetMapping Name="SampleType">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.SampleType">
               <MappingFragment StoreEntitySet="SampleType">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="TestType_Id" ColumnName="TestType_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1035,6 +1264,11 @@
           <EntitySetMapping Name="Test">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.Test">
               <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1054,6 +1288,11 @@
           <EntitySetMapping Name="TestInRequest">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestInRequest">
               <MappingFragment StoreEntitySet="TestInRequest">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1065,6 +1304,11 @@
           <EntitySetMapping Name="TestType">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestType">
               <MappingFragment StoreEntitySet="TestType">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -1073,6 +1317,11 @@
           <EntitySetMapping Name="TestCheck">
             <EntityTypeMapping TypeName="ASLBarcodingDBModel.TestCheck">
               <MappingFragment StoreEntitySet="TestCheck">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="Checked" ColumnName="Checked" />
                 <ScalarProperty Name="TestId" ColumnName="TestId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1086,6 +1335,29 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStage">
+            <EntityTypeMapping TypeName="ASLBarcodingDBModel.RequestStage">
+              <MappingFragment StoreEntitySet="RequestStage">
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SampleLastNo" ColumnName="SampleLastNo" />
+                <ScalarProperty Name="SampleFirstNo" ColumnName="SampleFirstNo" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="WorkorderNo" ColumnName="WorkorderNo" />
+                <ScalarProperty Name="SampleTypeId" ColumnName="SampleTypeId" />
+                <ScalarProperty Name="NoofSamples" ColumnName="NoofSamples" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="RequiredDate" ColumnName="RequiredDate" />
+                <ScalarProperty Name="SubmitDate" ColumnName="SubmitDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

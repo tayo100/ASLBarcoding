@@ -17,6 +17,11 @@ namespace ASLBarcoding.Models
         public int Id { get; set; }
         public Nullable<int> AnalysisId { get; set; }
         public Nullable<int> Result1 { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         public virtual Analysis Analysis { get; set; }
     }

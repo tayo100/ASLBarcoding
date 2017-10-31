@@ -18,6 +18,7 @@ namespace ASLBarcoding.Models
         public Client()
         {
             this.Request = new HashSet<Request>();
+            this.RequestStage = new HashSet<RequestStage>();
         }
     
         public int Id { get; set; }
@@ -27,8 +28,15 @@ namespace ASLBarcoding.Models
         public string TelephoneNo { get; set; }
         public string Email { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestStage> RequestStage { get; set; }
     }
 }

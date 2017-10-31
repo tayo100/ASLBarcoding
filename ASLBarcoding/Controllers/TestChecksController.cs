@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASLBarcoding.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ASLBarcoding.Controllers
 {
@@ -38,12 +39,13 @@ namespace ASLBarcoding.Controllers
 
 
             //var count = 1;
-            foreach (TestCheck tchk in list) {
+            foreach (TestCheck tchk in list)
+            {
                 if (tchk.Checked != false)
                 {
                     testInRequest.TestId = tchk.TestId;                   // testInRequest.RequestId = 1; // would need to automate this later                    
                     testInRequest.RequestId = varId;
-                    testInRequest.Status = ACTIVITYSTATUS.NEW.ToString();  
+                    testInRequest.Status = ACTIVITYSTATUS.NEW.ToString();
                     db.TestInRequest.Add(testInRequest);
                     db.SaveChanges();
                     //get the total cost of the test(s) checked
@@ -86,10 +88,23 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,TestId,Checked")] TestCheck testCheck)
         {
             if (ModelState.IsValid)
             {
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                //barcodecs objbar = new barcodecs();
+
+                if (currentUser != null)
+                    testCheck.createdBy = currentUser.UserName;
+                else
+                    testCheck.createdBy = User.Identity.Name;
+
+                testCheck.createdDate = DateTime.Now;
+
+
                 db.TestCheck.Add(testCheck);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -120,10 +135,22 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,TestId,Checked")] TestCheck testCheck)
         {
             if (ModelState.IsValid)
             {
+
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    testCheck.updatedBy = currentUser.UserName;
+                else
+                    testCheck.updatedBy = User.Identity.Name;
+
+                testCheck.updatedDate = DateTime.Now;
+
                 db.Entry(testCheck).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -17,6 +17,11 @@ namespace ASLBarcoding.Models
         public int Id { get; set; }
         public int TestId { get; set; }
         public bool Checked { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         public virtual Test Test { get; set; }
     }

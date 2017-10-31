@@ -32,12 +32,15 @@
         <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_Request" ManuallyRouted="false" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_Test_TestType" ManuallyRouted="false" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_Test" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestCheck" Width="1.5" PointX="5.25" PointY="19.25" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.TestCheck" Width="1.5" PointX="5.375" PointY="17.875" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_TestCheck_Test" />
         <EntityTypeShape EntityType="ASLBarcodingDBModel.UserLogin" Width="1.5" PointX="3" PointY="18.75" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_UserLogin_AspNetUser" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_TestInRequest_AspNetUser" />
         <AssociationConnector Association="ASLBarcodingDBModel.FK_SampleType_TestType" />
+        <EntityTypeShape EntityType="ASLBarcodingDBModel.RequestStage" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_RequestStage_Client" />
+        <AssociationConnector Association="ASLBarcodingDBModel.FK_RequestStage_SampleType" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

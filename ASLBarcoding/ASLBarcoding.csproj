@@ -260,7 +260,11 @@
     <Compile Include="Models\CustomSampleModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Metadata\Request.cs" />
     <Compile Include="Models\Request.cs">
+      <DependentUpon>ASLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RequestStage.cs">
       <DependentUpon>ASLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Result.cs">
@@ -345,6 +349,7 @@
     <Content Include="Content\Labels\Barcode25x13mm.label" />
     <Content Include="Content\Labels\Barcode51x19mm.label" />
     <Content Include="fonts\free3of9.ttf" />
+    <Content Include="Data\ASLBarCodingDb.bak" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Scripts\DYMO.Label.Framework.1.2.6.latest.js" />

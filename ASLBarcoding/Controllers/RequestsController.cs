@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ASLBarcoding.Models;
 using System.Diagnostics;
 using BarCode.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ASLBarcoding.Controllers
 {
@@ -80,9 +81,9 @@ namespace ASLBarcoding.Controllers
             else if (sampleList.Count() <= 0)
             {
                 return Json("No matching record(s) found using your query to the expected generate report! EMPTY");
-            } 
+            }
 
-            if (copies > 1) 
+            if (copies > 1)
             {
                 //Create a number of copies for the array of request
 
@@ -148,12 +149,26 @@ namespace ASLBarcoding.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                //var currentUser = manager.FindById(User.Identity.GetUserId());
+                ////barcodecs objbar = new barcodecs();
+
+                //if (currentUser != null)
+                //    request.createdBy = currentUser.UserName;
+                //else
+                //    request.createdBy = User.Identity.Name;
+
+                //request.createdDate = DateTime.Now;
+
+
+
                 request.WorkorderNo = 2017153;
                 request.SampleFirstNo = 201706032;
                 request.SampleLastNo = 201706033;
 
                 var worder = db.Request.Select(x => x.WorkorderNo).FirstOrDefault();
-                if(worder != 0)
+                if (worder != 0)
                 {
                     var lastWorkOrder = db.Request.Select(x => x.WorkorderNo).Max();
                     request.WorkorderNo = lastWorkOrder + 1;
@@ -163,7 +178,7 @@ namespace ASLBarcoding.Controllers
                     var newSampleFirstNo = lstSamplelastNo + 1;
                     var newSampleLastNo = lstSamplelastNo + toAdd;
 
-                    request.SampleFirstNo = newSampleFirstNo; 
+                    request.SampleFirstNo = newSampleFirstNo;
                     request.SampleLastNo = newSampleLastNo;
 
                 }
@@ -179,9 +194,9 @@ namespace ASLBarcoding.Controllers
                 // filter the test to pick based on type
                 var rId = request.SampleTypeId;
                 var ttype = db.SampleType.Where(x => x.Id == rId).Select(x => x.TestType_Id).FirstOrDefault();
-                
+
                 TempData["ttype"] = ttype;
-                
+
 
                 var varId = db.Request.Where(x => x.SampleLastNo == request.SampleLastNo).Select(x => x.ID).FirstOrDefault();
                 TempData["reqId"] = varId;
@@ -199,7 +214,7 @@ namespace ASLBarcoding.Controllers
                     db.SaveChanges();
                 }
 
-                
+
 
 
                 return RedirectToAction("Index", "TestCheck");
@@ -236,6 +251,17 @@ namespace ASLBarcoding.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                //var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                //if (currentUser != null)
+                //    request.updatedBy = currentUser.UserName;
+                //else
+                //    request.updatedBy = User.Identity.Name;
+
+                //request.updatedDate = DateTime.Now;
+
                 db.Entry(request).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -267,7 +293,7 @@ namespace ASLBarcoding.Controllers
         {
             Request request = db.Request.Find(id);
 
-            var list = db.TestInRequest.Where(x  => x.RequestId == id).ToList();
+            var list = db.TestInRequest.Where(x => x.RequestId == id).ToList();
             foreach (var item in list)
             {
                 db.TestInRequest.Remove(item);

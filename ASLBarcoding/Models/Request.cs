@@ -34,6 +34,11 @@ namespace ASLBarcoding.Models
         public int SampleFirstNo { get; set; }
         public int SampleLastNo { get; set; }
         public string Status { get; set; }
+        public Nullable<System.DateTime> createdDate { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
+        public byte[] Timestamp { get; set; }
+        public string createdBy { get; set; }
+        public string updatedBy { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual SampleType SampleType { get; set; }

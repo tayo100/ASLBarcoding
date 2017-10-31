@@ -12,6 +12,7 @@ using DYMO;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI;
+using Microsoft.AspNet.Identity;
 
 namespace ASLBarcoding.Controllers
 {
@@ -133,10 +134,23 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "SampleNo,RequestID")] Sample sample) //Barcode,BarcodeImageUrl,
         {
             if (ModelState.IsValid)
             {
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                //barcodecs objbar = new barcodecs();
+
+                if (currentUser != null)
+                    sample.createdBy = currentUser.UserName;
+                else
+                    sample.createdBy = User.Identity.Name;
+
+                sample.createdDate = DateTime.Now;
+
+
                 db.Sample.Add(sample);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -147,6 +161,7 @@ namespace ASLBarcoding.Controllers
         }
 
         // GET: Samples/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -167,10 +182,22 @@ namespace ASLBarcoding.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,SampleNo,Barcode,BarcodeImageUrl,RequestID")] Sample sample)
         {
             if (ModelState.IsValid)
             {
+                
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                if (currentUser != null)
+                    sample.updatedBy = currentUser.UserName;
+                else
+                    sample.updatedBy = User.Identity.Name;
+
+                sample.updatedDate = DateTime.Now;
+
                 db.Entry(sample).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -180,6 +207,7 @@ namespace ASLBarcoding.Controllers
         }
 
         // GET: Samples/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -197,6 +225,7 @@ namespace ASLBarcoding.Controllers
         // POST: Samples/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Sample sample = db.Sample.Find(id);
