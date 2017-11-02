@@ -21,7 +21,7 @@
 }
 
 
-@using (Html.BeginForm("PrintDetails", "Samples", FormMethod.Post)) 
+@using (Html.BeginForm("ExportDetails", "Samples", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ID)
@@ -32,8 +32,9 @@
                 new SelectListItem() {Text = "Select Label Type", Value=""}}, new { @class = "form-control" })
         @Html.TextBox("copies", ViewBag.CurrentFilter as string, new { @class = "form-control input-mini", placeholder = "No. of Barcode Label Copies ...", pattern = "\\d*" })
     </div>;
-    @*<button class="btn btn-primary" type="submit">Print Details!</button>*@
-    <input class="btn btn-success" type="button" id="printButton2" name="btnSubmit" value="Print Labels!" onclick="if (confirm('Print labels anyway?')) { printLocally(); }" />
+    
+    <input class="btn btn-success" type="button" id="printButton2" name="btnSubmit" value="Print Labels!" onclick="if (confirm('Print labels?')) { printLocally(); }" />
+    <input class="btn btn-warning" type="submit" id="downloadButton" name="downloadSubmit" value="Export to Template" onclick="if (confirm('Export now?')) { return true; }" />
 }
 
 <div>

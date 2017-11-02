@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ASLBarcoding.Models.Sample>
+
+@{
+    ViewBag.Title = "Barcode Data List";
+}
+
+<h2>Barcode Data List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Request.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Request.WorkorderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.WorkorderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SampleNo)
+        </td>
+        <td>
+            @if (item.BarcodeImageUrl != null)
+            {
+                var imageUrl = Convert.ToBase64String((byte[])item.BarcodeImageUrl);
+                <img src="data:image/jpg;base64,@imageUrl" />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
