@@ -13,6 +13,9 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ASLBarcoding.Controllers
 {
@@ -120,6 +123,205 @@ namespace ASLBarcoding.Controllers
 
             ViewBag.barcode = sample.BarcodeImageUrl;
             return View(sample);
+        }
+
+        // GET: /VarietyProcessFlow/
+        public ActionResult BarcodeDataList(string barcode)
+        {
+            var sample = from r in db.Sample select r;
+
+            if (!String.IsNullOrEmpty(barcode))
+            {
+                sample = sample.Where(rg => rg.Barcode.Contains(barcode));
+            }
+
+            return View(sample.ToList());
+        }
+
+        //[Authorize(Roles = "Admin, CanViewCummulativeReport, PartnerReporting")]
+        [HttpPost]
+        public ActionResult ExportDetails(int? id=0)
+        {
+            /*var sample = db.Sample
+                        .Join(db.Request, 
+                              a => a.RequestID,
+                              b => b.ID, 
+                              (a, b) => new { Sample = a, Request = b })                
+                        .Join(db.TestInRequest, 
+                              a => a.Request.ID,
+                              c => c.RequestId,
+                              (a, c) => new { a.Request, a.Sample, TestInRequest = c })
+                        .Join(db.AspNetUser, 
+                              c => c.TestInRequest.UserId,
+                              d => d.Id,
+                              (c, d) => new { c.Request, c.Sample, c.TestInRequest, AspNetUser = d })
+                        .Where(a => a.Sample.ID == id)
+                        .Select(a => new RequestSampleReport
+                                     {
+                                         ReqID = a.Request.ID,
+                                        ReqSubmitDate = a.Request.SubmitDate,
+                                        ReqRequiredDate = a.Request.RequiredDate,
+                                        ReqClientId = a.Request.ClientId,
+                                        ReqNoofSamples = a.Request.NoofSamples,
+                                        ReqSampleTypeId = a.Request.SampleTypeId,
+                                        ReqWorkorderNo = a.Request.WorkorderNo,
+                                        ReqCost = a.Request.Cost,
+                                        ReqCompletionDate = a.Request.CompletionDate,
+                                        ReqSampleFirstNo = a.Request.SampleFirstNo,
+                                        ReqSampleLastNo = a.Request.SampleLastNo,
+                                        ReqStatus = a.Request.Status,
+                                        SampID = a.Sample.ID,
+                                        SampSampleNo = a.Sample.SampleNo,
+                                        SampBarcode = a.Sample.Barcode,
+                                        SampOiC = a.AspNetUser.UserName
+                                     });*/
+
+            var sample = from s in db.Sample
+                                    join r in db.Request 
+                                        on s.RequestID equals r.ID 
+                                    join tr in db.TestInRequest 
+                                        on r.ID equals tr.RequestId 
+                                    join u in db.AspNetUser 
+                                        on tr.UserId equals u.Id into aj 
+                                    from a in aj.DefaultIfEmpty()
+                                    where s.ID == id
+                                    select new RequestSampleReport   {
+                                        ReqID = s.RequestID,
+                                        ReqSubmitDate = r.SubmitDate,
+                                        ReqRequiredDate = r.RequiredDate,
+                                        ReqClientId = r.ClientId,
+                                        ReqNoofSamples = r.NoofSamples,
+                                        ReqSampleTypeId = r.SampleTypeId,
+                                        ReqWorkorderNo = r.WorkorderNo,
+                                        ReqCost = r.Cost,
+                                        ReqCompletionDate = r.CompletionDate,
+                                        ReqSampleFirstNo = r.SampleFirstNo,
+                                        ReqSampleLastNo = r.SampleLastNo,
+                                        ReqStatus = r.Status,
+                                        SampID = s.RequestID,
+                                        SampSampleNo = s.SampleNo,
+                                        SampBarcode = s.Barcode,
+                                        SampOiC = a.FullName
+                                    };
+
+            GridView gv = new GridView();
+            gv.DataSource = sample.ToList();
+            gv.DataBind();
+            DataTable dt = new DataTable();
+            //Console.WriteLine(gv.Rows[0].Cells[0].Text);
+            dt.Columns.Add("Header");
+            dt.Rows.Add(gv.Rows[0].Cells[0].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[1].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[2].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[3].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[4].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[5].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[6].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[7].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[8].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[9].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[10].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[11].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[12].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[13].Text);
+            dt.Rows.Add(gv.Rows[0].Cells[14].Text);
+
+            string filename = "~/Content/Content/templates/WS00-OC.xls";
+
+            int index = filename.LastIndexOf('.');
+            string onlyName = filename.Substring(0, index);
+            string extension = filename.Substring(index + 1);
+
+            int indexFN = onlyName.LastIndexOf('/');
+            string onlyFname = onlyName.Substring(0, indexFN);
+            string onlyFileName = onlyName.Substring(indexFN + 1);
+           
+            IWorkbook workbook;
+            FileStream fileStream = new FileStream(Server.MapPath(filename), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            if (extension == "xlsx")
+            {
+                workbook = new XSSFWorkbook(fileStream);
+            }
+            else if (extension == "xls")
+            {
+                workbook = new HSSFWorkbook(fileStream);
+            }
+            else
+            {
+                throw new Exception("This format is not supported");
+            }
+
+            WriteExcelWithNPOI(dt, workbook, extension, onlyFileName);
+
+
+            return RedirectToAction("Index");
+
+        }
+
+        public void WriteExcelWithNPOI(DataTable dt, IWorkbook workbook, string extension, string onlyName){
+            /*ISheet sheet1 = workbook.CreateSheet("Sheet 1");
+
+            //make a header row
+            IRow row1 = sheet1.CreateRow(0);
+
+            for (int j = 0; j < dt.Columns.Count; j++)
+            {
+
+                ICell cell = row1.CreateCell(j);
+                String columnName = dt.Columns[j].ToString();
+                cell.SetCellValue(columnName);
+            }
+
+            //loops through data
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                IRow row = sheet1.CreateRow(i + 1);
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+
+                    ICell cell = row.CreateCell(j);
+                    String columnName = dt.Columns[j].ToString();
+                    cell.SetCellValue(dt.Rows[i][columnName].ToString());
+                }
+            }*/
+
+            ISheet sheet1 = workbook.GetSheetAt(0);
+
+            IRow row = sheet1.GetRow(3);
+            ICell cell = row.CreateCell(1);
+            cell.SetCellValue(dt.Rows[6][0].ToString());
+
+            row = sheet1.GetRow(4);
+            cell = row.CreateCell(1);
+            cell.SetCellValue(dt.Rows[13][0].ToString());
+
+            row = sheet1.GetRow(5);
+            cell = row.CreateCell(1);
+            cell.SetCellValue(dt.Rows[14][0].ToString());
+
+            row = sheet1.GetRow(6);
+            cell = row.CreateCell(1);
+            cell.SetCellValue(string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now));
+            using (var exportData = new MemoryStream())
+            {
+                Response.Clear();
+                workbook.Write(exportData);
+                if (extension == "xlsx") //xlsx file format
+                {
+                    string excelFileName = onlyName + "_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xlsx";
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", excelFileName));
+                    Response.BinaryWrite(exportData.ToArray());
+                }
+                else if (extension == "xls")  //xls file format
+                {
+                    string excelFileName = onlyName + "_" + string.Format("{0:dd_MM_yyyy_HH_mm_ss}", DateTime.Now) + ".xls";
+                    Response.ContentType = "application/vnd.ms-excel";
+                    Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", excelFileName));
+                    Response.BinaryWrite(exportData.GetBuffer());
+                }
+                Response.End();
+            }
         }
 
         // GET: Samples/Create

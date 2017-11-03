@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubmitDate, "Date Submitted", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SubmitDate, new { @class = "form-control datecontrol" })
+                @Html.TextBoxFor(model => model.SubmitDate, new { @class = "form-control datecontrol", dateformat = "dd/mm/yy" })
                 @Html.ValidationMessageFor(model => model.SubmitDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RequiredDate, "Date Required", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol" })
+                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol", dateformat = "dd/mm/yy" })
                 @Html.ValidationMessageFor(model => model.RequiredDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -94,7 +94,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompletionDate, "Proposed Completion date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol" })
+                @Html.TextBoxFor(model => model.RequiredDate, new { @class = "form-control datecontrol", dateformat = "dd/mm/yy" })
                 @Html.ValidationMessageFor(model => model.RequiredDate, "", new { @class = "text-danger" })
             </div>
         </div>
